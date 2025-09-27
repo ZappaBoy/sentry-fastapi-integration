@@ -1,3 +1,5 @@
+import os
+
 import sentry_sdk
 from fastapi import APIRouter, FastAPI
 
@@ -5,7 +7,8 @@ from services.core import Core
 from utils.logger import Logger
 
 sentry_sdk.init(
-    dsn="http://your_dsn@your_sentry_server/your_project_id",
+    # e.g. "http://your_dsn@your_sentry_server/your_project_id"
+    dsn=os.environ['SENTRY_DSN'],
     send_default_pii=True,
     # traces_sample_rate=0.5,
     # # enable or disable profiling or logs if desired

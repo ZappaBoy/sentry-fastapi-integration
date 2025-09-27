@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   app:
     container_name: fastapi_template
@@ -16,6 +14,9 @@ services:
       - ./app:/app
     healthcheck:
       test: [ "CMD", "curl", "-f", "-X", "GET", "http://localhost:80/api/healthcheck" ]
-      interval: 300s
-      timeout: 180s
-      retries: 5
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    extra_hosts:
+      - "sentry.local:host-gateway"
